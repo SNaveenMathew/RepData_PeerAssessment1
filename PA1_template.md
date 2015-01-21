@@ -17,15 +17,7 @@ na_omitted<-na.omit(activity_data)
 ```
 
 ## What is mean total number of steps taken per day?
-For this part of the assignment, you can ignore the missing values in the dataset.
-
-- Make a histogram of the total number of steps taken each day
-
-```r
-hist(na_omitted$steps,main="Histogram of number of steps",xlab="Number of steps",ylab="Frequency",col="blue")
-```
-
-![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
+For this part of the assignment, you can ignore the missing values in the datase
 
 - Calculate and report the mean and median total number of steps taken per day
 
@@ -47,6 +39,14 @@ old_median
 ```
 ## [1] 10765
 ```
+
+- Make a histogram of the total number of steps taken each day
+
+```r
+hist(steps_day[,2],main="Histogram of number of steps taken each day",xlab="Number of steps",ylab="Frequency",col="blue")
+```
+
+![](PA1_template_files/figure-html/unnamed-chunk-4-1.png) 
 
 ## What is the average daily activity pattern?
 - Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
@@ -106,11 +106,15 @@ head(data_no_na)
 ## 6 2.0943396 2012-10-01       25    10
 ```
 
+```r
+steps_day<-aggregate(data_no_na$steps, list(data_no_na$date), FUN="sum")
+```
+
 - Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
 ```r
 ## Similar plot as the first plot
-hist(data_no_na$steps,main="Histogram of number of steps (no missing data)",xlab="Number of steps",ylab="Frequency",col="blue")
+hist(steps_day[,2],main="Histogram of number of steps (no missing data)",xlab="Number of steps",ylab="Frequency",col="blue")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-9-1.png) 
